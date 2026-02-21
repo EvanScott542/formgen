@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      POSTGRES_DB: formgen
+      POSTGRES_USER: formgen
+      POSTGRES_PASSWORD: formgen
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U formgen -d formgen"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:

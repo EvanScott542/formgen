@@ -1,0 +1,9 @@
+{
+  "name": "form-designer-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/form-designer-e2e/src",
+  "implicitDependencies": ["form-designer"],
+  "// targets": "to see all targets run: nx show project form-designer-e2e --web",
+  "targets": {}
+}
