@@ -41,12 +41,7 @@
     },
     "@nx/vitest:test": { "cache": true, "inputs": ["default", "^production"] }
   },
-  "release": {
-    "projects": ["api"],
-    "projectsRelationship": "independent",
-    "docker": { "skipVersionActions": true }
-  },
-  "plugins": [
+"plugins": [
     { "plugin": "@nx/playwright/plugin", "options": { "targetName": "e2e" } },
     { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
