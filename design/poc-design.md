@@ -51,17 +51,17 @@ You are implementing the FormGen POC described in `formgen-poc-plan.md`, which l
 ### Phase 2 — FastAPI Backend
 
 - [x] ✅ **2.1** Context folder structure confirmed — `form_design/`, `generation/`, `form_catalog/`, `shared/` all present with correct files
-- [ ] **2.2** `RenderableForm` Pydantic schema in `shared/` — matches TypeScript interfaces
-- [ ] **2.3** `FormDraft` schemas defined in `form_design/`
-- [ ] **2.4** `LLMFormOutput` schemas and ACL translator defined in `generation/`
-- [ ] **2.5** `PublishedForm` schemas and catalog translator defined in `form_catalog/`
-- [ ] ✅ **2.6** `FormDraftValidator` implemented — all five invariants present and covered by unit tests; `pytest contexts/form_design/test_validator.py` passes
-- [ ] **2.7** SQLAlchemy models defined — `form_drafts` and `published_forms` tables
-- [ ] ✅ **2.8** Alembic migration applied — `alembic upgrade head` runs cleanly; both tables visible in Postgres
-- [ ] ✅ **2.9** `FormDesignService` implemented — stub generation, CRUD, validator on every write, auto-publish trigger; all routes respond correctly in Swagger UI
-- [ ] ✅ **2.10** `FormCatalogService` implemented — `GET /catalog/forms` returns `CatalogEntry[]`; `GET /catalog/forms/{id}` returns a `RenderableForm`
-- [ ] ✅ **2.11** All routers mounted, CORS configured — Configurator and Playground can reach the API from `localhost:4200` and `localhost:4201` without CORS errors
-- [ ] **2.12** Seed script run — at least two sample `PublishedForm` records visible in `GET /catalog/forms`
+- [x] **2.2** `RenderableForm` Pydantic schema in `shared/` — matches TypeScript interfaces
+- [x] **2.3** `FormDraft` schemas defined in `form_design/`
+- [x] **2.4** `LLMFormOutput` schemas and ACL translator defined in `generation/`
+- [x] **2.5** `PublishedForm` schemas and catalog translator defined in `form_catalog/`
+- [x] ✅ **2.6** `FormDraftValidator` implemented — all five invariants present and covered by unit tests; `pytest contexts/form_design/test_validator.py` passes (13/13)
+- [x] **2.7** SQLAlchemy models defined — `form_drafts` and `published_forms` tables
+- [x] ✅ **2.8** Alembic migration applied — `alembic upgrade head` runs cleanly; both tables visible in Postgres
+- [x] ✅ **2.9** `FormDesignService` implemented — stub generation, CRUD, validator on every write, auto-publish trigger; all routes respond correctly in Swagger UI
+- [x] ✅ **2.10** `FormCatalogService` implemented — `GET /catalog/forms` returns `CatalogEntry[]`; `GET /catalog/forms/{id}` returns a `RenderableForm`
+- [x] ✅ **2.11** All routers mounted, CORS configured — Configurator and Playground can reach the API from `localhost:4200` and `localhost:4201` without CORS errors
+- [x] **2.12** Seed script run — 3 sample `PublishedForm` records seeded; `GET /catalog/forms` returns 4 entries
 
 ---
 
