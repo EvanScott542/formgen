@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from shared.database import get_db
-from shared.errors import DraftValidationError
+from shared.errors import DraftValidationError, GenerationOutputError
 from contexts.form_design.schemas import (
     FormDraft, GenerationRequest, DraftUpdateRequest, DraftSummary,
 )
@@ -18,6 +18,8 @@ def get_service(db: Session = Depends(get_db)) -> FormDesignService:
 def generate_form(request: GenerationRequest, service: FormDesignService = Depends(get_service)):
     try:
         return service.generate(request)
+    except GenerationOutputError as e:
+        raise HTTPException(status_code=422, detail=[err.model_dump() for err in e.errors])
     except DraftValidationError as e:
         raise HTTPException(status_code=422, detail=[err.model_dump() for err in e.errors])
 
