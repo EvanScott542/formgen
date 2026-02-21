@@ -1,0 +1,24 @@
+.formgen-card {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+
+  mat-card-header {
+    margin-bottom: 16px;
+  }
+}
+
+.formgen-fields-grid {
+  width: 100%;
+}
+
+.formgen-field-wrapper {
+  box-sizing: border-box;
+}
+
+.formgen-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
