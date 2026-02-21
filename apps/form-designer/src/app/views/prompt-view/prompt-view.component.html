@@ -1,0 +1,43 @@
+<div class="prompt-container">
+  <mat-card class="prompt-card">
+    <mat-card-header>
+      <mat-card-title>Generate a Form</mat-card-title>
+      <mat-card-subtitle>Describe the form you need in plain English</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="prompt-field">
+        <mat-label>Form description</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="prompt"
+          rows="5"
+          placeholder="e.g. A contact form with name, email, subject dropdown, and message textarea"
+          [disabled]="loading()"
+        ></textarea>
+        <mat-hint>Be specific — mention field types, required fields, and layout preferences.</mat-hint>
+      </mat-form-field>
+
+      @if (errors().length) {
+        <div class="prompt-errors">
+          @for (err of errors(); track err.field) {
+            <p class="error-msg">{{ err.message }}</p>
+          }
+        </div>
+      }
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      @if (loading()) {
+        <mat-spinner diameter="28" />
+      } @else {
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!prompt.trim()"
+          (click)="submit()"
+        >Generate Form</button>
+      }
+    </mat-card-actions>
+  </mat-card>
+</div>
