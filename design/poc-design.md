@@ -19,22 +19,22 @@ You are implementing the FormGen POC described in `formgen-poc-plan.md`, which l
 
 ### Phase 0 — Scaffolding
 
-- [ ] ✅ **0.1** Block 1 decisions confirmed (package manager, Angular version, Node version, Python version, Postgres approach, app names, library scope)
-- [ ] ✅ **0.2** Configurator Nx app created and `ng serve` renders Angular shell at `http://localhost:4200`
-- [ ] ✅ **0.3** Angular Material added to Configurator app — theme compiles with no errors
-- [ ] ✅ **0.4** Formgen library scaffolded and `ng build` produces a `dist/` folder with no errors
-- [ ] ✅ **0.5** Playground Nx app created and `ng serve` renders Angular shell at `http://localhost:4201`
-- [ ] ✅ **0.6** Angular Material added to Playground app — theme compiles with no errors
-- [ ] ✅ **0.7** Formgen library linked to Playground via `file:` reference — Playground builds with no errors
-- [ ] ✅ **0.8** FastAPI backend scaffolded — context folder structure exists, `uvicorn main:app --reload` starts with no errors and Swagger UI is reachable at `http://localhost:8000/docs`
-- [ ] ✅ **0.9** Postgres running via Docker Compose — `docker compose ps` shows container healthy
-- [ ] ✅ **0.10** Alembic initialised — `alembic upgrade head` runs with no errors
+- [x] ✅ **0.1** Block 1 decisions confirmed (package manager, Angular version, Node version, Python version, Postgres approach, app names, library scope)
+- [x] ✅ **0.2** Configurator Nx app created and `ng serve` renders Angular shell at `http://localhost:4200`
+- [x] ✅ **0.3** Angular Material added to Configurator app — theme compiles with no errors
+- [x] ✅ **0.4** Formgen library scaffolded and `ng build` produces a `dist/` folder with no errors
+- [x] ✅ **0.5** Playground Nx app created and `ng serve` renders Angular shell at `http://localhost:4201`
+- [x] ✅ **0.6** Angular Material added to Playground app — theme compiles with no errors
+- [x] ✅ **0.7** Formgen library linked to Playground via tsconfig path alias — Playground builds with no errors
+- [x] ✅ **0.8** FastAPI backend scaffolded — context folder structure exists, `uvicorn main:app --reload` starts with no errors and Swagger UI is reachable at `http://localhost:8000/docs`
+- [x] ✅ **0.9** Postgres running via Docker Compose — `docker-compose ps` shows container healthy
+- [x] ✅ **0.10** Alembic initialised — `alembic upgrade head` runs with no errors
 
 ---
 
 ### Phase 1 — Shared Kernel (RenderableForm)
 
-- [ ] ✅ **1.1** `shared/renderable_form.py` defined — Pydantic schema imports cleanly, no errors on `python -c "from shared.renderable_form import RenderableForm"`
+- [x] ✅ **1.1** `shared/renderable_form.py` defined — Pydantic schema imports cleanly, no errors on `python -c "from shared.renderable_form import RenderableForm"`
 - [ ] **1.2** `RenderableForm` TypeScript interfaces defined in formgen library
 - [ ] **1.3** `FormBuilderService` implemented — takes `RenderableForm`, returns `FormGroup`
 - [ ] **1.4** `ValidatorFactoryService` implemented — maps `ValidatorConfig[]` → Angular `Validators`
@@ -50,7 +50,7 @@ You are implementing the FormGen POC described in `formgen-poc-plan.md`, which l
 
 ### Phase 2 — FastAPI Backend
 
-- [ ] ✅ **2.1** Context folder structure confirmed — `form_design/`, `generation/`, `form_catalog/`, `shared/` all present with correct files
+- [x] ✅ **2.1** Context folder structure confirmed — `form_design/`, `generation/`, `form_catalog/`, `shared/` all present with correct files
 - [ ] **2.2** `RenderableForm` Pydantic schema in `shared/` — matches TypeScript interfaces
 - [ ] **2.3** `FormDraft` schemas defined in `form_design/`
 - [ ] **2.4** `LLMFormOutput` schemas and ACL translator defined in `generation/`
