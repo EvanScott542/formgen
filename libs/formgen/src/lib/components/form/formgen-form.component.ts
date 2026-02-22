@@ -1,6 +1,6 @@
 import {
   Component, Input, Output, EventEmitter, OnChanges,
-  SimpleChanges, computed, signal,
+  SimpleChanges, inject,
 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgComponentOutlet, NgStyle } from '@angular/common';
@@ -25,12 +25,10 @@ export class FormgenFormComponent implements OnChanges {
 
   form!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilderService,
-    public fieldFactory: FormFieldFactoryService,
-    public layoutEngine: LayoutEngineService,
-    public selectorGenerator: CssSelectorGeneratorService,
-  ) {}
+  private formBuilder = inject(FormBuilderService);
+  fieldFactory = inject(FormFieldFactoryService);
+  layoutEngine = inject(LayoutEngineService);
+  selectorGenerator = inject(CssSelectorGeneratorService);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['config'] && this.config) {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,7 +32,7 @@ export class SelectComponent {
   @Input() field!: RenderableField;
   @Input() control!: AbstractControl;
 
-  constructor(private validatorFactory: ValidatorFactoryService) {}
+  private validatorFactory = inject(ValidatorFactoryService);
 
   get asFormControl() {
     return this.control as import('@angular/forms').FormControl;
