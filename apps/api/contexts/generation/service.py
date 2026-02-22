@@ -1,7 +1,9 @@
 import json
 import os
 import anthropic
+from pydantic import ValidationError
 from contexts.generation.schemas import LLMFormOutput
+from shared.errors import GenerationOutputError
 
 SYSTEM_PROMPT = """You are a form schema generator. Given a plain English description of a form, return a JSON object matching this schema exactly (no markdown, no commentary — raw JSON only):
 
@@ -49,8 +51,21 @@ class GenerationService:
             messages=[{"role": "user", "content": prompt}],
         )
         raw = message.content[0].text.strip()
-        data = json.loads(raw)
-        return LLMFormOutput(**data)
+
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise GenerationOutputError(
+                f"LLM returned non-JSON output. Parse error: {exc}. "
+                f"Raw output (first 200 chars): {raw[:200]}"
+            ) from exc
+
+        try:
+            return LLMFormOutput(**data)
+        except (ValidationError, TypeError) as exc:
+            raise GenerationOutputError(
+                f"LLM output did not match expected schema: {exc}"
+            ) from exc
 
     def _stub(self, prompt: str) -> LLMFormOutput:
         """Returns a deterministic stub when no API key is configured."""

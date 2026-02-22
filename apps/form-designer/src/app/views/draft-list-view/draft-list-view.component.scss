@@ -1,0 +1,49 @@
+.list-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h2 { margin: 0; }
+}
+
+.list-loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.empty-msg {
+  color: rgba(0,0,0,.5);
+  text-align: center;
+  padding: 48px;
+}
+
+.draft-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.draft-card {
+  mat-card-actions {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.draft-description {
+  font-size: 14px;
+  color: rgba(0,0,0,.6);
+  margin: 0;
+}
+
+.actions-spacer {
+  flex: 1;
+}

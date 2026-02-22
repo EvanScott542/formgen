@@ -1,0 +1,89 @@
+@if (loading()) {
+  <div class="detail-loading">
+    <mat-spinner diameter="48" />
+  </div>
+} @else if (draft()) {
+  <div class="detail-layout">
+
+    <!-- Left: editor -->
+    <div class="detail-editor">
+      <div class="editor-header">
+        <a mat-button routerLink="/drafts">← All Drafts</a>
+        <span class="draft-meta">v{{ draft()!.version }} · {{ draft()!.status }}</span>
+      </div>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Edit Draft</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form [formGroup]="form">
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Form Name</mat-label>
+              <input matInput formControlName="name" />
+              @if (form.get('name')?.invalid && form.get('name')?.touched) {
+                <mat-error>Name is required.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Layout Columns</mat-label>
+              <mat-select formControlName="columns">
+                @for (col of columnOptions; track col) {
+                  <mat-option [value]="col">{{ col }} column{{ col > 1 ? 's' : '' }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <mat-divider class="section-divider" />
+            <h4 class="section-label">Fields</h4>
+
+            <div formArrayName="fields">
+              @for (field of draft()!.fields; track field.key; let i = $index) {
+                <div class="field-row" [formGroupName]="i">
+                  <span class="field-key">{{ field.key }}</span>
+                  <span class="field-type-badge">{{ field.type }}</span>
+                  <mat-form-field appearance="outline" class="field-label-input">
+                    <mat-label>Label</mat-label>
+                    <input matInput formControlName="label" />
+                  </mat-form-field>
+                </div>
+              }
+            </div>
+
+          </form>
+
+          @if (errors().length) {
+            <div class="save-errors">
+              @for (err of errors(); track err.field) {
+                <p class="error-msg">{{ err.field }}: {{ err.message }}</p>
+              }
+            </div>
+          }
+
+          @if (saveSuccess()) {
+            <p class="success-msg">✓ Saved successfully</p>
+          }
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          @if (saving()) {
+            <mat-spinner diameter="24" />
+          } @else {
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">
+              Save
+            </button>
+          }
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Right: live preview -->
+    <div class="detail-preview">
+      <app-preview-panel [renderableForm]="renderableForm()" />
+    </div>
+
+  </div>
+}

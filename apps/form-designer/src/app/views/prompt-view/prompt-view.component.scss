@@ -1,0 +1,31 @@
+.prompt-container {
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.prompt-card {
+  width: 100%;
+  max-width: 720px;
+
+  mat-card-actions {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.prompt-field {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.prompt-errors {
+  margin-top: 12px;
+}
+
+.error-msg {
+  color: var(--mat-sys-error);
+  margin: 4px 0;
+  font-size: 14px;
+}
