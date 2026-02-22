@@ -9,7 +9,15 @@
     class="shell-sidenav"
     [class.sidenav-rail]="!isMobile()">
 
+    <header class="sidenav-header">
+      <div class="sidenav-logomark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span class="sidenav-wordmark">FormGen</span>
+    </header>
+
     <nav aria-label="Main navigation" role="navigation">
+      <p class="nav-section-label">Workspace</p>
       <mat-nav-list class="app-nav-list">
         <a
           mat-list-item

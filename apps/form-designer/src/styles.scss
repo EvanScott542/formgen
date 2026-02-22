@@ -42,23 +42,77 @@ body {
 }
 /* You can add global styles to this file, and also import other style files */
 
+// ── Sidenav brand header ───────────────────────────────────────────────────────
+
+.sidenav-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 64px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  flex-shrink: 0;
+}
+
+// 2×2 grid of squares — the middle-right cell is primary-colored,
+// referencing a form field layout
+.sidenav-logomark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+
+  span {
+    border-radius: 1.5px;
+    background-color: var(--mat-sys-outline);
+
+    &:nth-child(2) {
+      background-color: var(--mat-sys-primary);
+    }
+  }
+}
+
+.sidenav-wordmark {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface);
+}
+
+// ── Nav section label ──────────────────────────────────────────────────────────
+
+.nav-section-label {
+  margin: 20px 20px 4px;
+  padding: 0;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+}
+
 // ── Nav list ──────────────────────────────────────────────────────────────────
 
 .app-nav-list {
-  padding: 8px;
+  padding: 0 8px 8px;
 
-  // Half of Material 3's default 28px list item shape, applied globally
-  // here since component encapsulation prevents this from working in app.scss
-  .mdc-list-item {
-    border-radius: 14px;
-  }
+  // Use Material's own token — no specificity battle with its internal styles
+  --mat-list-list-item-container-shape: 6px;
 
   a.nav-active {
-    background-color: var(--mat-sys-secondary-container);
-    color: var(--mat-sys-on-secondary-container);
+    // Left accent bar via inset box-shadow (no layout impact)
+    box-shadow: inset 3px 0 0 var(--mat-sys-primary);
+    background-color: var(--mat-sys-surface-variant);
+    color: var(--mat-sys-on-surface);
+    border-radius: 0 6px 6px 0;
 
     .mat-icon {
-      color: var(--mat-sys-on-secondary-container);
+      color: var(--mat-sys-primary);
     }
   }
 }
