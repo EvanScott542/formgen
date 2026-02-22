@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,10 +24,8 @@ export class PromptViewComponent {
   loading = signal(false);
   errors = signal<ApiValidationError[]>([]);
 
-  constructor(
-    private api: FormDesignApiService,
-    private router: Router,
-  ) {}
+  private api = inject(FormDesignApiService);
+  private router = inject(Router);
 
   submit(): void {
     if (!this.prompt.trim() || this.loading()) return;
