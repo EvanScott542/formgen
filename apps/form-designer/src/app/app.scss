@@ -49,14 +49,3 @@
   overflow-y: auto;
 }
 
-// ── Active nav item ───────────────────────────────────────────────────────────
-
-.mat-nav-list a.nav-active {
-  background-color: var(--mat-sys-secondary-container);
-  color: var(--mat-sys-on-secondary-container);
-  border-radius: 0;
-
-  .mat-icon {
-    color: var(--mat-sys-on-secondary-container);
-  }
-}

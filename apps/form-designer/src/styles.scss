@@ -17,8 +17,6 @@ html {
     density: 0,
   ));
 
-  // Remove border radii from nav list items (hover, focus, active ripple states)
-  --mat-list-list-item-container-shape: 0;
   // Remove border radius from the sidenav drawer
   --mat-sidenav-container-shape: 0;
 }
@@ -43,3 +41,24 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+// ── Nav list ──────────────────────────────────────────────────────────────────
+
+.app-nav-list {
+  padding: 8px;
+
+  // Half of Material 3's default 28px list item shape, applied globally
+  // here since component encapsulation prevents this from working in app.scss
+  .mdc-list-item {
+    border-radius: 14px;
+  }
+
+  a.nav-active {
+    background-color: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+
+    .mat-icon {
+      color: var(--mat-sys-on-secondary-container);
+    }
+  }
+}
