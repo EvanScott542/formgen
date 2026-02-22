@@ -35,4 +35,26 @@ body {
   margin: 0;
   height: 100%;
 }
-/* You can add global styles to this file, and also import other style files */
+/* Theme overrides — applied via class on <html> by ThemeService */
+
+.theme-indigo {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+.theme-teal {
+  @include mat.theme((
+    color: (
+      primary: mat.$cyan-palette,
+      tertiary: mat.$green-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
