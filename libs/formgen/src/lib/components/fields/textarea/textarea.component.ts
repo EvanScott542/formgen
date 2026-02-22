@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,7 +33,7 @@ export class TextareaComponent {
   @Input() field!: RenderableField;
   @Input() control!: AbstractControl;
 
-  constructor(private validatorFactory: ValidatorFactoryService) {}
+  private validatorFactory = inject(ValidatorFactoryService);
 
   get asFormControl() {
     return this.control as import('@angular/forms').FormControl;

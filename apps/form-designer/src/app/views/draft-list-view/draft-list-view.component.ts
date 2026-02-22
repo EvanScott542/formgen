@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,7 +23,7 @@ export class DraftListViewComponent implements OnInit {
   loading = signal(true);
   deletingId = signal<string | null>(null);
 
-  constructor(private api: FormDesignApiService) {}
+  private api = inject(FormDesignApiService);
 
   ngOnInit(): void {
     this.loadDrafts();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RenderableForm, RenderableField, RenderableAction } from '../types/renderable-form';
+import { RenderableForm, RenderableField } from '../types/renderable-form';
 
 export interface FormSelectors {
   form: string;

@@ -9,8 +9,8 @@ import { RenderableField } from '../../../types/renderable-form';
   imports: [ReactiveFormsModule, MatRadioModule],
   template: `
     <div class="formgen-radio-wrapper">
-      <label class="formgen-radio-label">{{ field.label }}</label>
-      <mat-radio-group [formControl]="asFormControl" class="formgen-radio-group">
+      <span class="formgen-radio-label">{{ field.label }}</span>
+      <mat-radio-group [formControl]="asFormControl" class="formgen-radio-group" [attr.aria-label]="field.label">
         @for (option of field.options; track option.value) {
           <mat-radio-button [value]="option.value">{{ option.label }}</mat-radio-button>
         }

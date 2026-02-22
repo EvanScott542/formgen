@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="app-title">Formgen Playground</span>
+  <span class="toolbar-spacer"></span>
+  <app-theme-picker />
+</mat-toolbar>
+
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav mode="side" opened class="app-sidenav">
+    <app-catalog-browser (formSelected)="onFormSelected($event)" />
+  </mat-sidenav>
+
+  <mat-sidenav-content class="app-content">
+    <app-form-preview-panel
+      [renderableForm]="renderableForm()"
+      [loading]="loadingForm()"
+    />
+  </mat-sidenav-content>
+</mat-sidenav-container>

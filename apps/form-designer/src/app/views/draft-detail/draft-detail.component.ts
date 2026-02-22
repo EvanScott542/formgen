@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -39,13 +39,11 @@ export class DraftDetailComponent implements OnInit {
 
   readonly columnOptions = [1, 2, 3, 4];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private api: FormDesignApiService,
-    private mapper: RenderableFormMapperService,
-    private fb: FormBuilder,
-  ) {}
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private api = inject(FormDesignApiService);
+  private mapper = inject(RenderableFormMapperService);
+  private fb = inject(FormBuilder);
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;

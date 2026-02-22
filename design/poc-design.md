@@ -90,12 +90,12 @@ You are implementing the FormGen POC described in `formgen-poc-plan.md`, which l
 
 ### Phase 5 — Playground App
 
-- [ ] **5.1** `FormCatalogApiService` built — typed client for `/catalog/*`
-- [ ] **5.2** `CatalogBrowser` built — fetches and lists `CatalogEntry[]` with search
-- [ ] ✅ **5.3** `FormPreviewPanel` renders a catalog form — select a form from the browser, fetch by ID, render via formgen with no console errors
-- [ ] **5.4** `ThemePicker` built — toggles between at least two Material themes; form re-renders correctly under each
-- [ ] **5.5** Generated CSS selectors displayed alongside the rendered form
-- [ ] ✅ **5.6** Full Playground flow stable — browse catalog, select form, render, switch theme; no console errors; CSS selectors visible
+- [x] **5.1** `FormCatalogApiService` built — typed client for `/catalog/*`
+- [x] **5.2** `CatalogBrowser` built — fetches and lists `CatalogEntry[]` with search
+- [x] ✅ **5.3** `FormPreviewPanel` renders a catalog form — select a form from the browser, fetch by ID, render via formgen with no console errors
+- [x] **5.4** `ThemePicker` built — toggles between at least two Material themes; form re-renders correctly under each
+- [x] **5.5** Generated CSS selectors displayed alongside the rendered form
+- [x] ✅ **5.6** Full Playground flow stable — browse catalog, select form, render, switch theme; no console errors; CSS selectors visible
 
 ---
 

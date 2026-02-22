@@ -1,0 +1,29 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.app-sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+.app-sidenav {
+  width: 300px;
+  border-right: 1px solid rgba(0,0,0,.12);
+  overflow-y: auto;
+}
+
+.app-content {
+  overflow-y: auto;
+  background: var(--mat-sys-surface);
+}

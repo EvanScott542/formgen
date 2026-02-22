@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-formgen-ui',
+  selector: 'formgen-root',
   imports: [],
   templateUrl: './formgen-ui.html',
   styleUrl: './formgen-ui.scss',

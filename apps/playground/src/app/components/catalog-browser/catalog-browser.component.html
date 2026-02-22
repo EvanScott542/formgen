@@ -1,0 +1,29 @@
+<div class="browser-header">
+  <h3 class="browser-title">Form Catalog</h3>
+  <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+    <mat-label>Search</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput [value]="searchQuery()" (input)="searchQuery.set($any($event.target).value)" />
+  </mat-form-field>
+</div>
+
+@if (loading()) {
+  <div class="browser-loading"><mat-spinner diameter="32" /></div>
+} @else if (!filteredEntries().length) {
+  <p class="browser-empty">No forms found.</p>
+} @else {
+  <mat-nav-list>
+    @for (entry of filteredEntries(); track entry.id) {
+      <mat-list-item
+        [class.selected]="selectedId() === entry.id"
+        (click)="select(entry)"
+      >
+        <span matListItemTitle>{{ entry.name }}</span>
+        <span matListItemLine class="entry-date">{{ formatDate(entry.published_at) }}</span>
+        @if (entry.description) {
+          <span matListItemLine class="entry-desc">{{ entry.description }}</span>
+        }
+      </mat-list-item>
+    }
+  </mat-nav-list>
+}

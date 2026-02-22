@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
@@ -9,7 +9,7 @@ const API = 'http://localhost:8000';
 
 @Injectable({ providedIn: 'root' })
 export class FormDesignApiService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   generate(request: GenerationRequest): Observable<FormDraft> {
     return this.http.post<FormDraft>(`${API}/design/generate`, request);
