@@ -1,0 +1,47 @@
+.browser-header {
+  padding: 16px 16px 0;
+}
+
+.browser-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: rgba(0,0,0,.6);
+}
+
+.search-field {
+  width: 100%;
+}
+
+.browser-loading,
+.browser-empty {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  color: rgba(0,0,0,.4);
+}
+
+mat-list-item {
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 2px 8px;
+
+  &.selected {
+    background: var(--mat-sys-secondary-container);
+  }
+}
+
+.entry-date {
+  font-size: 11px;
+  color: rgba(0,0,0,.45);
+}
+
+.entry-desc {
+  font-size: 12px;
+  color: rgba(0,0,0,.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
