@@ -1,19 +1,17 @@
-<div class="list-container">
+<div class="list-container" [fgLoadingBar]="loading()">
   <div class="list-header">
     <h2>My Drafts</h2>
   </div>
 
-  @if (loading()) {
-    <div class="list-loading"><mat-spinner diameter="40" aria-label="Loading drafts" /></div>
-  } @else if (!drafts().length) {
-    <app-empty-state
+  @if (!loading() && !drafts().length) {
+    <fg-empty-state
       icon="description"
       heading="No drafts yet"
       body="Generate your first form from a plain-English description."
       ctaLabel="New Form"
       ctaRoute="/prompt"
     />
-  } @else {
+  } @else if (!loading()) {
     <div class="draft-list">
       @for (draft of drafts(); track draft.id) {
         <mat-card class="draft-card">
@@ -31,10 +29,7 @@
           }
 
           <mat-card-actions>
-            <mat-chip
-              disabled
-              [class]="'status-chip status-chip--' + draft.status"
-            >{{ draft.status }}</mat-chip>
+            <fg-status-chip [status]="draft.status" />
             <span class="actions-spacer"></span>
             <a
               mat-button

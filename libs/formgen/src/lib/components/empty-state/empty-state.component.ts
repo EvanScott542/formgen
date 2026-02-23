@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-empty-state',
+  selector: 'fg-empty-state',
   standalone: true,
   imports: [RouterModule, MatIconModule, MatButtonModule],
   templateUrl: './empty-state.component.html',

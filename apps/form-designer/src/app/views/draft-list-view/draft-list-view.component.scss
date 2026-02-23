@@ -13,12 +13,6 @@
   h2 { margin: 0; }
 }
 
-.list-loading {
-  display: flex;
-  justify-content: center;
-  padding: 48px;
-}
-
 .draft-list {
   display: flex;
   flex-direction: column;
@@ -40,19 +34,6 @@
 
 .actions-spacer {
   flex: 1;
-}
-
-// Status chip colour map using MD3 system tokens
-.status-chip {
-  &--saved {
-    --mdc-chip-elevated-container-color: var(--mat-sys-tertiary-container);
-    --mdc-chip-label-text-color: var(--mat-sys-on-tertiary-container);
-  }
-
-  &--draft {
-    --mdc-chip-elevated-container-color: var(--mat-sys-surface-variant);
-    --mdc-chip-label-text-color: var(--mat-sys-on-surface-variant);
-  }
 }
 
 // Extended FAB — fixed bottom-right, clears bottom nav on mobile

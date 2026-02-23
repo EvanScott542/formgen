@@ -18,6 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RenderableForm } from '@formgen/ui';
+import { StatusChipComponent } from '@formgen/ui';
 import { FormDesignApiService } from '../../services/form-design-api.service';
 import { RenderableFormMapperService } from '../../services/renderable-form-mapper.service';
 import { FormDraft, ApiValidationError } from '../../models/form-draft';
@@ -31,7 +32,7 @@ import { PreviewPanelComponent } from '../preview-panel/preview-panel.component'
     MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatButtonModule, MatProgressSpinnerModule, MatIconModule, MatDividerModule,
     MatChipsModule, MatTabsModule, DragDropModule,
-    PreviewPanelComponent,
+    PreviewPanelComponent, StatusChipComponent,
   ],
   templateUrl: './draft-detail.component.html',
   styleUrl: './draft-detail.component.scss',

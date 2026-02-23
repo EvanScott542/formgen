@@ -16,9 +16,7 @@
       </div>
       <div class="editor-header__chips">
         <mat-chip disabled>v{{ draft()!.version }}</mat-chip>
-        <mat-chip disabled [class]="'status-chip status-chip--' + draft()!.status">
-          {{ draft()!.status }}
-        </mat-chip>
+        <fg-status-chip [status]="draft()!.status" />
       </div>
     </div>
   </ng-template>

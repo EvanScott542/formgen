@@ -3,20 +3,18 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatChipsModule } from '@angular/material/chips';
 import { FormDesignApiService } from '../../services/form-design-api.service';
 import { DraftSummary } from '../../models/form-draft';
-import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
+import { EmptyStateComponent, StatusChipComponent, LoadingBarDirective } from '@formgen/ui';
 
 @Component({
   selector: 'app-draft-list-view',
   standalone: true,
   imports: [
     RouterModule, MatCardModule, MatButtonModule,
-    MatIconModule, MatProgressSpinnerModule, MatProgressBarModule,
-    MatChipsModule, EmptyStateComponent,
+    MatIconModule, MatProgressBarModule,
+    EmptyStateComponent, StatusChipComponent, LoadingBarDirective,
   ],
   templateUrl: './draft-list-view.component.html',
   styleUrl: './draft-list-view.component.scss',
