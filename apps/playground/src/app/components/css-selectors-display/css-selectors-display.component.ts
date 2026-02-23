@@ -50,18 +50,18 @@ import { FormSelectors } from '@formgen/ui';
     .panel-icon { margin-right: 8px; font-size: 18px; line-height: 18px; }
     .selectors-content { display: flex; flex-direction: column; gap: 12px; padding-top: 8px; }
     .selector-group { display: flex; flex-direction: column; gap: 4px; }
-    .group-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: rgba(0,0,0,.5); }
+    .group-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--mat-sys-on-surface-variant); }
     .selector-list { display: flex; flex-direction: column; gap: 2px; }
     code.selector {
       font-family: 'Roboto Mono', monospace;
       font-size: 12px;
-      background: rgba(0,0,0,.04);
+      background: var(--mat-sys-surface-container-low);
       padding: 2px 8px;
       border-radius: 4px;
       display: inline-block;
       color: var(--mat-sys-primary);
     }
-    code.selector.secondary { color: rgba(0,0,0,.55); }
+    code.selector.secondary { color: var(--mat-sys-on-surface-variant); }
   `],
 })
 export class CssSelectorsDisplayComponent {
