@@ -1,14 +1,17 @@
-<div class="list-container">
+<div class="list-container" [fgLoadingBar]="loading()">
   <div class="list-header">
-    <h2>My Drafts</h2>
-    <a mat-raised-button color="primary" routerLink="/prompt">+ New Form</a>
+    <h1>My Drafts</h1>
   </div>
 
-  @if (loading()) {
-    <div class="list-loading"><mat-spinner diameter="40" /></div>
-  } @else if (!drafts().length) {
-    <p class="empty-msg">No drafts yet. <a routerLink="/prompt">Generate your first form.</a></p>
-  } @else {
+  @if (!loading() && !drafts().length) {
+    <fg-empty-state
+      icon="description"
+      heading="No drafts yet"
+      body="Generate your first form from a plain-English description."
+      ctaLabel="New Form"
+      ctaRoute="/prompt"
+    />
+  } @else if (!loading()) {
     <div class="draft-list">
       @for (draft of drafts(); track draft.id) {
         <mat-card class="draft-card">
@@ -26,24 +29,38 @@
           }
 
           <mat-card-actions>
-            <mat-chip [highlighted]="draft.status === 'saved'">{{ draft.status }}</mat-chip>
+            <fg-status-chip [status]="draft.status" />
             <span class="actions-spacer"></span>
-            <a mat-button color="primary" [routerLink]="['/drafts', draft.id]">Edit</a>
+            <a
+              mat-button
+              [routerLink]="['/drafts', draft.id]"
+              [attr.aria-label]="'Edit ' + draft.name"
+            >Edit</a>
             <button
               mat-button
               color="warn"
               [disabled]="deletingId() === draft.id"
+              [attr.aria-label]="deletingId() === draft.id ? 'Deleting ' + draft.name : 'Delete ' + draft.name"
               (click)="delete(draft.id)"
-            >
-              @if (deletingId() === draft.id) {
-                <mat-spinner diameter="16" />
-              } @else {
-                Delete
-              }
-            </button>
+            >Delete</button>
           </mat-card-actions>
+
+          @if (deletingId() === draft.id) {
+            <mat-progress-bar mode="indeterminate" aria-label="Deleting draft" />
+          }
         </mat-card>
       }
     </div>
   }
 </div>
+
+<a
+  mat-fab
+  extended
+  routerLink="/prompt"
+  class="new-form-fab"
+  aria-label="New Form"
+>
+  <mat-icon>add</mat-icon>
+  New Form
+</a>

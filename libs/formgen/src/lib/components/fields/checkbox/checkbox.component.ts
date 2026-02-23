@@ -19,7 +19,7 @@ import { RenderableField } from '../../../types/renderable-form';
   `,
   styles: [
     `.formgen-checkbox-wrapper { display: flex; flex-direction: column; padding: 8px 0; }`,
-    `.formgen-field-hint { font-size: 12px; color: rgba(0,0,0,.6); margin-top: 4px; padding-left: 4px; }`,
+    `.formgen-field-hint { font-size: 12px; color: var(--mat-sys-on-surface-variant); margin-top: 4px; padding-left: 4px; }`,
   ],
 })
 export class CheckboxComponent {

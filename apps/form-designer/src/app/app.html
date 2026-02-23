@@ -1,1 +1,78 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="shell-container">
+
+  <!-- Mobile overlay sidenav -->
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile()"
+    [fixedInViewport]="true"
+    class="shell-sidenav"
+    [class.sidenav-rail]="!isMobile()">
+
+    <header class="sidenav-header">
+      <div class="sidenav-logomark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span class="sidenav-wordmark">FormGen</span>
+    </header>
+
+    <nav aria-label="Main navigation" role="navigation">
+      <p class="nav-section-label">Workspace</p>
+      <mat-nav-list class="app-nav-list">
+        <a
+          mat-list-item
+          routerLink="/prompt"
+          routerLinkActive="nav-active"
+          [routerLinkActiveOptions]="{ exact: false }"
+          aria-label="New Form">
+          <mat-icon matListItemIcon aria-hidden="true">add_circle</mat-icon>
+          <span matListItemTitle>New Form</span>
+        </a>
+
+        <a
+          mat-list-item
+          routerLink="/drafts"
+          routerLinkActive="nav-active"
+          [routerLinkActiveOptions]="{ exact: false }"
+          aria-label="My Drafts">
+          <mat-icon matListItemIcon aria-hidden="true">folder_open</mat-icon>
+          <span matListItemTitle>My Drafts</span>
+        </a>
+      </mat-nav-list>
+    </nav>
+
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content class="shell-content">
+
+    <mat-toolbar class="app-toolbar">
+      <!-- Hamburger — mobile only -->
+      @if (isMobile()) {
+        <button
+          mat-icon-button
+          (click)="toggleSidenav()"
+          aria-label="Toggle navigation menu">
+          <mat-icon aria-hidden="true">menu</mat-icon>
+        </button>
+      }
+
+      <span class="app-title">FormGen</span>
+      <span class="toolbar-spacer"></span>
+
+      <button
+        mat-icon-button
+        (click)="toggleDarkMode()"
+        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [matTooltip]="darkMode() ? 'Light mode' : 'Dark mode'">
+        <mat-icon aria-hidden="true">{{ darkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <main class="shell-main">
+      <router-outlet />
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

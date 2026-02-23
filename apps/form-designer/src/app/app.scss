@@ -1,0 +1,51 @@
+// ── Shell layout ──────────────────────────────────────────────────────────────
+
+.shell-container {
+  height: 100vh;
+}
+
+// Sidenav shared base
+.shell-sidenav {
+  width: 240px;
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container);
+}
+
+// Desktop: narrower rail (icon + label)
+.sidenav-rail {
+  width: 200px;
+}
+
+// Toolbar
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  gap: 4px;
+}
+
+.app-title {
+  font: var(--mat-sys-title-large);
+  color: var(--mat-sys-on-surface);
+  margin-inline-start: 8px;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+// Main content area
+.shell-content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--mat-sys-surface);
+}
+
+.shell-main {
+  flex: 1;
+  overflow-y: auto;
+}
+

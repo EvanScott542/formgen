@@ -1,15 +1,22 @@
+// ── Shell layout ──────────────────────────────────────────────────────────────
+
 .app-toolbar {
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  gap: 4px;
 }
 
-.app-title {
-  font-size: 18px;
-  font-weight: 600;
+.app-toolbar__title {
+  font: var(--mat-sys-title-large);
+  color: var(--mat-sys-on-surface);
+  margin-inline-start: 8px;
 }
 
-.toolbar-spacer {
+.app-toolbar__spacer {
   flex: 1;
 }
 
@@ -19,11 +26,14 @@
 
 .app-sidenav {
   width: 300px;
-  border-right: 1px solid rgba(0,0,0,.12);
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container);
   overflow-y: auto;
 }
 
 .app-content {
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   background: var(--mat-sys-surface);
 }

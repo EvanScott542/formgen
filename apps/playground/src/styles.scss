@@ -19,10 +19,9 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
+  // Defer to the user's OS preference by default; the dark mode toggle
+  // adds `.dark-mode` to <body> to force dark regardless of OS setting.
+  color-scheme: light dark;
 
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
@@ -35,6 +34,11 @@ body {
   margin: 0;
   height: 100%;
 }
+/* Dark mode — forced via toggle button, persisted in localStorage */
+body.dark-mode {
+  color-scheme: dark;
+}
+
 /* Theme overrides — applied via class on <html> by ThemeService */
 
 .theme-indigo {

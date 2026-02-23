@@ -1,7 +1,7 @@
 .list-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 32px 24px 96px; // bottom padding clears the FAB on mobile
 }
 
 .list-header {
@@ -10,19 +10,7 @@
   align-items: center;
   margin-bottom: 24px;
 
-  h2 { margin: 0; }
-}
-
-.list-loading {
-  display: flex;
-  justify-content: center;
-  padding: 48px;
-}
-
-.empty-msg {
-  color: rgba(0,0,0,.5);
-  text-align: center;
-  padding: 48px;
+  h1 { margin: 0; }
 }
 
 .draft-list {
@@ -40,10 +28,22 @@
 
 .draft-description {
   font-size: 14px;
-  color: rgba(0,0,0,.6);
+  color: var(--mat-sys-on-surface-variant);
   margin: 0;
 }
 
 .actions-spacer {
   flex: 1;
+}
+
+// Extended FAB — fixed bottom-right, clears bottom nav on mobile
+.new-form-fab {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  z-index: 10;
+
+  @media (min-width: 960px) {
+    bottom: 32px;
+  }
 }

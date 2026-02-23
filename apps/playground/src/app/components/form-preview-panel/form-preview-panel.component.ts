@@ -1,31 +1,34 @@
 import { Component, Input, OnChanges, SimpleChanges, inject, signal } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormgenFormComponent, RenderableForm, CssSelectorGeneratorService, FormSelectors } from '@formgen/ui';
 import { CssSelectorsDisplayComponent } from '../css-selectors-display/css-selectors-display.component';
 
 @Component({
   selector: 'app-form-preview-panel',
   standalone: true,
-  imports: [MatProgressSpinnerModule, FormgenFormComponent, CssSelectorsDisplayComponent],
+  imports: [MatProgressBarModule, FormgenFormComponent, CssSelectorsDisplayComponent],
   template: `
-    <div class="preview-wrapper">
-      @if (loading) {
-        <div class="preview-loading"><mat-spinner diameter="48" /></div>
-      } @else if (form()) {
+    @if (loading) {
+      <mat-progress-bar mode="indeterminate" class="preview-panel__progress" aria-label="Loading form" />
+    }
+    <div class="preview-panel__body">
+      @if (!loading && form()) {
         <formgen-form [config]="form()!" (formSubmit)="onSubmit($event)" />
         <app-css-selectors-display [selectors]="selectors()!" />
-      } @else {
-        <div class="preview-empty">
+      } @else if (!loading) {
+        <div class="preview-panel__empty" aria-live="polite">
           <p>Select a form from the catalog to preview it here.</p>
         </div>
       }
     </div>
   `,
   styles: [`
-    .preview-wrapper { padding: 24px; }
-    .preview-loading, .preview-empty {
+    :host { display: block; }
+    .preview-panel__progress { position: sticky; top: 0; z-index: 1; }
+    .preview-panel__body { padding: 24px; }
+    .preview-panel__empty {
       display: flex; justify-content: center; align-items: center;
-      min-height: 300px; color: rgba(0,0,0,.4);
+      min-height: 300px; color: var(--mat-sys-on-surface-variant);
     }
   `],
 })

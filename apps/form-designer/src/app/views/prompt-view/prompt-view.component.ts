@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormDesignApiService } from '../../services/form-design-api.service';
 import { ApiValidationError } from '../../models/form-draft';
 
@@ -22,15 +23,14 @@ import { ApiValidationError } from '../../models/form-draft';
 export class PromptViewComponent {
   prompt = '';
   loading = signal(false);
-  errors = signal<ApiValidationError[]>([]);
 
   private api = inject(FormDesignApiService);
   private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   submit(): void {
     if (!this.prompt.trim() || this.loading()) return;
     this.loading.set(true);
-    this.errors.set([]);
 
     this.api.generate({ prompt: this.prompt }).subscribe({
       next: (draft) => {
@@ -39,11 +39,12 @@ export class PromptViewComponent {
       },
       error: (err) => {
         this.loading.set(false);
+        let message = 'Generation failed. Please try again.';
         if (err.status === 422 && err.error?.detail) {
-          this.errors.set(err.error.detail as ApiValidationError[]);
-        } else {
-          this.errors.set([{ field: 'prompt', message: 'Generation failed. Please try again.' }]);
+          const detail = err.error.detail as ApiValidationError[];
+          message = detail.map((e) => e.message).join(' ');
         }
+        this.snackBar.open(message, 'Dismiss', { duration: 5000 });
       },
     });
   }

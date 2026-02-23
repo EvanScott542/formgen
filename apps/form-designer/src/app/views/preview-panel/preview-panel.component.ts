@@ -21,8 +21,8 @@ import { FormgenFormComponent, RenderableForm } from '@formgen/ui';
   `,
   styles: [`
     .preview-panel { padding: 0 8px; }
-    .preview-title { margin: 0 0 16px; font-size: 14px; font-weight: 500; color: rgba(0,0,0,.6); text-transform: uppercase; letter-spacing: .08em; }
-    .preview-empty { color: rgba(0,0,0,.38); font-style: italic; }
+    .preview-title { margin: 0 0 16px; font-size: 14px; font-weight: 500; color: var(--mat-sys-on-surface-variant); text-transform: uppercase; letter-spacing: .08em; }
+    .preview-empty { color: var(--mat-sys-on-surface-variant); font-style: italic; }
   `],
 })
 export class PreviewPanelComponent {

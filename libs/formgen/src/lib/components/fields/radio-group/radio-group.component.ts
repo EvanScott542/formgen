@@ -22,9 +22,9 @@ import { RenderableField } from '../../../types/renderable-form';
   `,
   styles: [
     `.formgen-radio-wrapper { display: flex; flex-direction: column; padding: 8px 0; }`,
-    `.formgen-radio-label { font-size: 14px; color: rgba(0,0,0,.6); margin-bottom: 8px; }`,
+    `.formgen-radio-label { font-size: 14px; color: var(--mat-sys-on-surface-variant); margin-bottom: 8px; }`,
     `.formgen-radio-group { display: flex; flex-direction: column; gap: 4px; }`,
-    `.formgen-field-hint { font-size: 12px; color: rgba(0,0,0,.6); margin-top: 4px; }`,
+    `.formgen-field-hint { font-size: 12px; color: var(--mat-sys-on-surface-variant); margin-top: 4px; }`,
   ],
 })
 export class RadioGroupComponent {

@@ -1,6 +1,13 @@
 // Types (shared kernel contract)
 export * from './lib/types/renderable-form';
 
+// Shared UI components
+export * from './lib/components/empty-state/empty-state.component';
+export * from './lib/components/status-chip/status-chip.component';
+
+// Shared directives
+export * from './lib/directives/loading-bar/loading-bar.directive';
+
 // Main component
 export * from './lib/components/form/formgen-form.component';
 

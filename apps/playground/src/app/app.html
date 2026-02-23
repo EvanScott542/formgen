@@ -1,15 +1,22 @@
-<mat-toolbar color="primary" class="app-toolbar">
-  <span class="app-title">Formgen Playground</span>
-  <span class="toolbar-spacer"></span>
+<mat-toolbar class="app-toolbar">
+  <span class="app-toolbar__title" role="heading" aria-level="1">Formgen Playground</span>
+  <span class="app-toolbar__spacer"></span>
   <app-theme-picker />
+  <button
+    mat-icon-button
+    (click)="toggleDarkMode()"
+    [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+    [matTooltip]="darkMode() ? 'Light mode' : 'Dark mode'">
+    <mat-icon aria-hidden="true">{{ darkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-sidenav-container class="app-sidenav-container">
-  <mat-sidenav mode="side" opened class="app-sidenav">
+  <mat-sidenav mode="side" opened class="app-sidenav" aria-label="Form catalog browser">
     <app-catalog-browser (formSelected)="onFormSelected($event)" />
   </mat-sidenav>
 
-  <mat-sidenav-content class="app-content">
+  <mat-sidenav-content class="app-content" role="main">
     <app-form-preview-panel
       [renderableForm]="renderableForm()"
       [loading]="loadingForm()"

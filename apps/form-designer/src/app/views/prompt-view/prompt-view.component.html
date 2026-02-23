@@ -1,7 +1,7 @@
 <div class="prompt-container">
-  <mat-card class="prompt-card">
+  <mat-card class="prompt-card" [attr.aria-busy]="loading() ? true : null">
     <mat-card-header>
-      <mat-card-title>Generate a Form</mat-card-title>
+      <mat-card-title><h1 class="prompt-card__title">Generate a Form</h1></mat-card-title>
       <mat-card-subtitle>Describe the form you need in plain English</mat-card-subtitle>
     </mat-card-header>
 
@@ -14,30 +14,30 @@
           rows="5"
           placeholder="e.g. A contact form with name, email, subject dropdown, and message textarea"
           [disabled]="loading()"
+          aria-describedby="prompt-hint"
         ></textarea>
-        <mat-hint>Be specific — mention field types, required fields, and layout preferences.</mat-hint>
+        <mat-hint id="prompt-hint">Be specific — mention field types, required fields, and layout preferences.</mat-hint>
+        <mat-hint align="end" class="char-count">{{ prompt.length }}/2000</mat-hint>
       </mat-form-field>
-
-      @if (errors().length) {
-        <div class="prompt-errors">
-          @for (err of errors(); track err.field) {
-            <p class="error-msg">{{ err.message }}</p>
-          }
-        </div>
-      }
     </mat-card-content>
 
     <mat-card-actions align="end">
-      @if (loading()) {
-        <mat-spinner diameter="28" />
-      } @else {
-        <button
-          mat-raised-button
-          color="primary"
-          [disabled]="!prompt.trim()"
-          (click)="submit()"
-        >Generate Form</button>
-      }
+      <button
+        mat-flat-button
+        [disabled]="!prompt.trim() || loading()"
+        (click)="submit()"
+        aria-label="Generate form from description"
+        class="submit-btn"
+      >
+        @if (loading()) {
+          <span class="btn-content">
+            <mat-spinner diameter="18" aria-hidden="true" />
+            Generating…
+          </span>
+        } @else {
+          Generate Form
+        }
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

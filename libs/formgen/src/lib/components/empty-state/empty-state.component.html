@@ -1,0 +1,8 @@
+<div class="empty-state" role="status">
+  <mat-icon class="empty-state__icon" aria-hidden="true">{{ icon() }}</mat-icon>
+  <h2 class="empty-state__heading">{{ heading() }}</h2>
+  <p class="empty-state__body">{{ body() }}</p>
+  <a mat-flat-button [routerLink]="ctaRoute()" class="empty-state__cta">
+    {{ ctaLabel() }}
+  </a>
+</div>

@@ -16,13 +16,18 @@ html {
     typography: Roboto,
     density: 0,
   ));
+
+  // Remove border radius from the sidenav drawer
+  --mat-sidenav-container-shape: 0;
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
+  // Defer to OS preference by default; toggling body.dark-mode forces dark.
+  color-scheme: light dark;
+
+  &.dark-mode {
+    color-scheme: dark;
+  }
 
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
@@ -36,3 +41,82 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+// ── Sidenav brand header ───────────────────────────────────────────────────────
+
+.sidenav-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 64px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  flex-shrink: 0;
+}
+
+// 2×2 grid of squares — the middle-right cell is primary-colored,
+// referencing a form field layout
+.sidenav-logomark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+
+  span {
+    border-radius: 1.5px;
+    background-color: var(--mat-sys-outline);
+
+    &:nth-child(2) {
+      background-color: var(--mat-sys-primary);
+    }
+  }
+}
+
+.sidenav-wordmark {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface);
+}
+
+// ── Nav section label ──────────────────────────────────────────────────────────
+
+.nav-section-label {
+  margin: 20px 20px 4px;
+  padding: 0;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+// ── Nav list ──────────────────────────────────────────────────────────────────
+
+.app-nav-list {
+  padding: 0 8px 8px;
+
+  --mat-list-list-item-container-shape: 0px;
+
+  .mdc-list-item,
+  .mat-mdc-list-item-ripple {
+    border-radius: 0;
+  }
+
+  a.nav-active {
+    // Left accent bar via inset box-shadow (no layout impact)
+    box-shadow: inset 3px 0 0 var(--mat-sys-primary);
+    background-color: var(--mat-sys-surface-variant);
+    color: var(--mat-sys-on-surface);
+    border-radius: 0;
+
+    .mat-icon {
+      color: var(--mat-sys-primary);
+    }
+  }
+}
