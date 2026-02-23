@@ -11,15 +11,13 @@ import { MatChipsModule } from '@angular/material/chips';
     </mat-chip>
   `,
   styles: [`
-    .status-chip {
-      &--saved {
-        --mdc-chip-elevated-container-color: var(--mat-sys-tertiary-container);
-        --mdc-chip-label-text-color: var(--mat-sys-on-tertiary-container);
-      }
-      &--draft {
-        --mdc-chip-elevated-container-color: var(--mat-sys-surface-variant);
-        --mdc-chip-label-text-color: var(--mat-sys-on-surface-variant);
-      }
+    .status-chip--saved {
+      --mdc-chip-elevated-container-color: var(--mat-sys-tertiary-container);
+      --mdc-chip-label-text-color: var(--mat-sys-on-tertiary-container);
+    }
+    .status-chip--draft {
+      --mdc-chip-elevated-container-color: var(--mat-sys-surface-variant);
+      --mdc-chip-label-text-color: var(--mat-sys-on-surface-variant);
     }
   `],
 })
