@@ -99,14 +99,14 @@
       <ng-container [ngTemplateOutlet]="editorHeader" />
       <mat-tab-group dynamicHeight>
         <mat-tab label="Edit">
-          <div class="tab-pane" aria-label="Form editor">
+          <section class="tab-pane" aria-label="Form editor">
             <ng-container [ngTemplateOutlet]="editorCard" />
-          </div>
+          </section>
         </mat-tab>
         <mat-tab label="Preview">
-          <div class="tab-pane" aria-label="Live preview">
+          <section class="tab-pane" aria-label="Live preview">
             <ng-container [ngTemplateOutlet]="previewPane" />
-          </div>
+          </section>
         </mat-tab>
       </mat-tab-group>
     </div>
@@ -115,13 +115,13 @@
   <!-- ── Desktop: side-by-side ────────────────────────────────── -->
 
     <div class="detail-layout">
-      <div class="detail-editor" aria-label="Form editor">
+      <section class="detail-editor" aria-label="Form editor">
         <ng-container [ngTemplateOutlet]="editorHeader" />
         <ng-container [ngTemplateOutlet]="editorCard" />
-      </div>
-      <div class="detail-preview" aria-label="Live preview">
+      </section>
+      <section class="detail-preview" aria-label="Live preview">
         <ng-container [ngTemplateOutlet]="previewPane" />
-      </div>
+      </section>
     </div>
   }
 }
