@@ -1,6 +1,11 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -9,6 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RenderableForm } from '@formgen/ui';
 import { FormDesignApiService } from '../../services/form-design-api.service';
 import { RenderableFormMapperService } from '../../services/renderable-form-mapper.service';
@@ -19,9 +27,10 @@ import { PreviewPanelComponent } from '../preview-panel/preview-panel.component'
   selector: 'app-draft-detail',
   standalone: true,
   imports: [
-    RouterModule, ReactiveFormsModule,
+    NgTemplateOutlet, RouterModule, ReactiveFormsModule,
     MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatButtonModule, MatProgressSpinnerModule, MatIconModule, MatDividerModule,
+    MatChipsModule, MatTabsModule, DragDropModule,
     PreviewPanelComponent,
   ],
   templateUrl: './draft-detail.component.html',
@@ -32,11 +41,8 @@ export class DraftDetailComponent implements OnInit {
   renderableForm = signal<RenderableForm | null>(null);
   loading = signal(true);
   saving = signal(false);
-  errors = signal<ApiValidationError[]>([]);
-  saveSuccess = signal(false);
 
   form!: FormGroup;
-
   readonly columnOptions = [1, 2, 3, 4];
 
   private route = inject(ActivatedRoute);
@@ -44,6 +50,15 @@ export class DraftDetailComponent implements OnInit {
   private api = inject(FormDesignApiService);
   private mapper = inject(RenderableFormMapperService);
   private fb = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  private breakpointObserver = inject(BreakpointObserver);
+
+  isMobile = toSignal(
+    this.breakpointObserver.observe('(max-width: 1023px)').pipe(
+      map(result => result.matches)
+    ),
+    { initialValue: false }
+  );
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
@@ -70,7 +85,6 @@ export class DraftDetailComponent implements OnInit {
       ),
     });
 
-    // Live preview: remap on every value change
     this.form.valueChanges.subscribe(() => this.updatePreview());
   }
 
@@ -80,6 +94,19 @@ export class DraftDetailComponent implements OnInit {
 
   fieldGroup(i: number): FormGroup {
     return this.fieldsArray.at(i) as FormGroup;
+  }
+
+  dropField(event: CdkDragDrop<unknown[]>): void {
+    const current = this.draft()!;
+    const fields = [...current.fields];
+    moveItemInArray(fields, event.previousIndex, event.currentIndex);
+    this.draft.set({ ...current, fields });
+
+    const ctrl = this.fieldsArray.at(event.previousIndex);
+    this.fieldsArray.removeAt(event.previousIndex);
+    this.fieldsArray.insert(event.currentIndex, ctrl);
+
+    this.updatePreview();
   }
 
   private updatePreview(): void {
@@ -110,8 +137,6 @@ export class DraftDetailComponent implements OnInit {
     }));
 
     this.saving.set(true);
-    this.errors.set([]);
-    this.saveSuccess.set(false);
 
     this.api.updateDraft(current.id, {
       name: v.name,
@@ -123,16 +148,16 @@ export class DraftDetailComponent implements OnInit {
         this.draft.set(updated);
         this.renderableForm.set(this.mapper.map(updated));
         this.saving.set(false);
-        this.saveSuccess.set(true);
-        setTimeout(() => this.saveSuccess.set(false), 2500);
+        this.snackBar.open('Saved', undefined, { duration: 2000 });
       },
       error: (err) => {
         this.saving.set(false);
+        let message = 'Save failed. Please try again.';
         if (err.status === 422 && err.error?.detail) {
-          this.errors.set(err.error.detail as ApiValidationError[]);
-        } else {
-          this.errors.set([{ field: 'form', message: 'Save failed. Please try again.' }]);
+          const detail = err.error.detail as ApiValidationError[];
+          message = 'Save failed: ' + detail.map(e => e.message).join(' ');
         }
+        this.snackBar.open(message, 'Retry', { duration: 6000 });
       },
     });
   }

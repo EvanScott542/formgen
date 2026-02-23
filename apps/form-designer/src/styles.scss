@@ -101,15 +101,19 @@ body {
 .app-nav-list {
   padding: 0 8px 8px;
 
-  // Use Material's own token — no specificity battle with its internal styles
-  --mat-list-list-item-container-shape: 6px;
+  --mat-list-list-item-container-shape: 0px;
+
+  .mdc-list-item,
+  .mat-mdc-list-item-ripple {
+    border-radius: 0;
+  }
 
   a.nav-active {
     // Left accent bar via inset box-shadow (no layout impact)
     box-shadow: inset 3px 0 0 var(--mat-sys-primary);
     background-color: var(--mat-sys-surface-variant);
     color: var(--mat-sys-on-surface);
-    border-radius: 0 6px 6px 0;
+    border-radius: 0;
 
     .mat-icon {
       color: var(--mat-sys-primary);

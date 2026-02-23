@@ -4,6 +4,7 @@
   padding: 80px;
 }
 
+// ── Desktop layout ─────────────────────────────────────────────
 .detail-layout {
   display: grid;
   grid-template-columns: 420px 1fr;
@@ -14,18 +15,54 @@
   align-items: start;
 }
 
+// ── Mobile layout ──────────────────────────────────────────────
+.detail-mobile {
+  padding: 16px;
+}
+
+.tab-pane {
+  padding-top: 16px;
+}
+
+// ── Editor header ──────────────────────────────────────────────
 .editor-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--mat-sys-on-surface);
+  }
+
+  &__chips {
+    display: flex;
+    gap: 8px;
+  }
 }
 
-.draft-meta {
-  font-size: 12px;
-  color: rgba(0,0,0,.5);
+// ── Status chips ───────────────────────────────────────────────
+.status-chip {
+  &--saved {
+    --mdc-chip-elevated-container-color: var(--mat-sys-tertiary-container);
+    --mdc-chip-label-text-color: var(--mat-sys-on-tertiary-container);
+  }
+
+  &--draft {
+    --mdc-chip-elevated-container-color: var(--mat-sys-surface-variant);
+    --mdc-chip-label-text-color: var(--mat-sys-on-surface-variant);
+  }
 }
 
+// ── Form fields ────────────────────────────────────────────────
 .full-width {
   width: 100%;
   display: block;
@@ -39,57 +76,71 @@
 .section-label {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(0,0,0,.6);
+  color: var(--mat-sys-on-surface-variant);
   margin: 0 0 12px;
   text-transform: uppercase;
   letter-spacing: .06em;
 }
 
+// ── Field rows ─────────────────────────────────────────────────
 .field-row {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 4px;
+  cursor: default;
+
+  // CDK drag placeholder
+  &.cdk-drag-placeholder {
+    opacity: 0.3;
+  }
+
+  // CDK drag preview box
+  &.cdk-drag-preview {
+    box-shadow: var(--mat-sys-shadow);
+    background: var(--mat-sys-surface-container);
+    border-radius: 8px;
+    padding: 0 8px;
+  }
+}
+
+.drag-handle {
+  cursor: grab;
+  color: var(--mat-sys-on-surface-variant);
+  flex-shrink: 0;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .field-key {
   font-family: monospace;
   font-size: 12px;
-  color: rgba(0,0,0,.5);
+  color: var(--mat-sys-on-surface-variant);
   min-width: 100px;
   flex-shrink: 0;
 }
 
-.field-type-badge {
-  font-size: 11px;
-  background: rgba(0,0,0,.06);
-  border-radius: 4px;
-  padding: 2px 6px;
+.field-type-chip {
   flex-shrink: 0;
+  --mdc-chip-elevated-container-color: var(--mat-sys-surface-variant);
+  --mdc-chip-label-text-color: var(--mat-sys-on-surface-variant);
 }
 
 .field-label-input {
   flex: 1;
 }
 
-.save-errors {
-  margin-top: 12px;
-}
-
-.error-msg {
-  color: var(--mat-sys-error, #b00020);
-  font-size: 13px;
-  margin: 2px 0;
-}
-
-.success-msg {
-  color: #2e7d32;
-  font-size: 13px;
-  margin-top: 8px;
-}
-
+// ── Save button ────────────────────────────────────────────────
 mat-card-actions {
   min-height: 48px;
   display: flex;
   align-items: center;
+}
+
+.btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
